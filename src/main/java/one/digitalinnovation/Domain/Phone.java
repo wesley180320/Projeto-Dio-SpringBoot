@@ -2,10 +2,7 @@ package one.digitalinnovation.Domain;
 
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 
@@ -19,11 +16,16 @@ public class Phone implements Serializable {
     private Integer id;
     private String numero;
 
+    @ManyToOne
+    @JoinColumn(name = "Person_id")
+    private Person person;
+
     public Phone(){}
 
-    public Phone(Integer id, String numero) {
+    public Phone(Integer id, String numero, Person person) {
         this.id = id;
         this.numero = numero;
+        this.person = person;
     }
 
     public Integer getId() {
@@ -40,5 +42,13 @@ public class Phone implements Serializable {
 
     public void setNumero(String numero) {
         this.numero = numero;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }

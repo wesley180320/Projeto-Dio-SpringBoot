@@ -2,6 +2,7 @@ package one.digitalinnovation.Domain;
 
 
 
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -14,6 +15,7 @@ public class Phone implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String numero;
 
     @ManyToOne

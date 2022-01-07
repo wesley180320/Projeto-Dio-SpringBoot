@@ -3,6 +3,7 @@ package one.digitalinnovation.Domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -15,7 +16,7 @@ public class Person implements Serializable {
     private Integer id;
     private String firstname;
     private String lastname;
-    private String birthdate;
+    private Date birthdate;
 
     @Column(nullable = false, unique = true)
     private String cpf;
@@ -27,7 +28,7 @@ public class Person implements Serializable {
     public Person() {
     }
 
-    public Person(Integer id, String firstname, String lastname, String birthdate, String cpf) {
+    public Person(Integer id, String firstname, String lastname, Date birthdate, String cpf) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -59,11 +60,11 @@ public class Person implements Serializable {
         this.lastname = lastname;
     }
 
-    public String getBirthdate() {
+    public Date getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(String birthdate) {
+    public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
 

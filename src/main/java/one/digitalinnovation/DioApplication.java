@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 @SpringBootApplication
@@ -28,8 +29,11 @@ public class DioApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 
-		Person person = new Person(null,"wesley","de souza","16/10/89","234252453");
-		Person person2 = new Person(null,"joilson","de souza","16/10/79","234252456");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+
+		Person person = new Person(null,"wesley","de souza",sdf.parse("16/10/1990"),"234252453");
+		Person person2 = new Person(null,"joilson","de souza",sdf.parse("26/09/2001"),"234252456");
 		Phone phone = new Phone(null,"(67) 8734-6798",person);
 		Phone phone2 = new Phone(null,"(54) 9940-5088 ",person2);
 

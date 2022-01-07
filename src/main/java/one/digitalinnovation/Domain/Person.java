@@ -23,7 +23,7 @@ public class Person implements Serializable {
     private String cpf;
 
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "person")
     private List<Phone> phones = new ArrayList<>();
 

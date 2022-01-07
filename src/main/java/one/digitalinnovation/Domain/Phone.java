@@ -3,6 +3,8 @@ package one.digitalinnovation.Domain;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -18,6 +20,7 @@ public class Phone implements Serializable {
 
     private String numero;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "Person_id")
     private Person person;

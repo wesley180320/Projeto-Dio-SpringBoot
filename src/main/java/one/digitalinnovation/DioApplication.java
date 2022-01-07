@@ -9,6 +9,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.Arrays;
+
 @SpringBootApplication
 public class DioApplication implements CommandLineRunner {
 
@@ -27,12 +29,15 @@ public class DioApplication implements CommandLineRunner {
 
 
 		Person person = new Person(null,"wesley","de souza","16/10/89","234252453");
-		Phone phone = new Phone(null,"21321421",person);
+		Person person2 = new Person(null,"joilson","de souza","16/10/79","234252456");
+		Phone phone = new Phone(null,"(67) 8734-6798",person);
+		Phone phone2 = new Phone(null,"(54) 9940-5088 ",person2);
 
 		person.getPhones().add(phone);
+		person2.getPhones().add(phone2);
 
-		personRepository.save(person);
-		phoneRepository.save(phone);
+		personRepository.saveAll(Arrays.asList(person,person2));
+		phoneRepository.saveAll(Arrays.asList(phone,phone2));
 
 
 	}

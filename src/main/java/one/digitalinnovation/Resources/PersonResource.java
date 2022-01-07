@@ -1,11 +1,14 @@
 package one.digitalinnovation.Resources;
 
 import one.digitalinnovation.Domain.Person;
+import one.digitalinnovation.Exception.PersonNotFoudException;
 import one.digitalinnovation.Service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/person")
@@ -23,12 +26,31 @@ public class PersonResource {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Person> finById(@PathVariable Integer id){
+    public ResponseEntity<Person> finById(@PathVariable Integer id) throws PersonNotFoudException {
 
         Person obj = personService.findById(id);
 
         return ResponseEntity.ok().body(obj);
 
     }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ResponseEntity<List<Person>> findAll(){
+
+        List<Person> obj = personService.findAll();
+
+        return ResponseEntity.ok().body(obj);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deletById(@PathVariable Integer id) {
+
+        personService.deletById(id);
+
+        return ResponseEntity.ok(null);
+
+
+    }
+
 
 }

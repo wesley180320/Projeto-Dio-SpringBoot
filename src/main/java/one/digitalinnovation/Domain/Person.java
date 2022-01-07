@@ -1,7 +1,5 @@
 package one.digitalinnovation.Domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,8 +21,7 @@ public class Person implements Serializable {
     private String cpf;
 
 
-
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "person",cascade = CascadeType.ALL)
     private List<Phone> phones = new ArrayList<>();
 
     public Person() {

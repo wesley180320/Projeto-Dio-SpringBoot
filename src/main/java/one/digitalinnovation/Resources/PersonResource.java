@@ -1,13 +1,17 @@
 package one.digitalinnovation.Resources;
 
 import one.digitalinnovation.Domain.Person;
+import one.digitalinnovation.Domain.Phone;
+import one.digitalinnovation.Dto.PersonDto;
 import one.digitalinnovation.Exception.PersonNotFoudException;
 import one.digitalinnovation.Service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -18,11 +22,15 @@ public class PersonResource {
     private PersonService personService;
 
     @RequestMapping(value = {"/"},method = RequestMethod.POST)
-    public ResponseEntity<Person> save(@RequestBody Person person){
+    public ResponseEntity<Void> save(@RequestBody PersonDto personDto){
 
-        Person obj = personService.save(person);
+        Person obj = personService.personFromDto(personDto);
+        obj = personService.save(obj);
 
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}").buildAndExpand(obj.getId()).toUri();
+
+        return ResponseEntity.created(uri).build();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

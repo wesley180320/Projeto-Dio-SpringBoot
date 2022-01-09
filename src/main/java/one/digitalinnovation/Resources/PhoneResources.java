@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/phone")
 public class PhoneResources {
 
-
     @Autowired
     private PhoneService phoneService;
 
